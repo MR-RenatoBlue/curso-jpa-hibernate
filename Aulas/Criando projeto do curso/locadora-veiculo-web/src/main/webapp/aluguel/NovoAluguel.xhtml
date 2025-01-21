@@ -24,18 +24,30 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Carro" for="carro" />
-				<p:selectOneMenu id="carro" value="#{novoAluguelBean.aluguel.carro}" >
+				<p:selectOneMenu id="carro" value="#{novoAluguelBean.aluguel.carro}">
 					<f:selectItem itemLabel="Selecione o carro" />
 					<f:selectItems value="#{novoAluguelBean.carros}" var="carro"
 						itemLabel="#{carro.modelo.descricao}: #{carro.placa}"
 						itemValue="#{carro}" />
 				</p:selectOneMenu>
 
+
+				<p:outputLabel value="Data da entrega" for="dataEntrega" />
+				<p:calendar id="dataEntrega" size="20"
+					value="#{novoAluguelBean.aluguel.dataEntrega}"
+					pattern="dd/MM/yyyy HH:mm" stepMinute="10" />
+
+				<p:outputLabel value="Data da devolução" for="dataDevolucao" />
+				<p:calendar id="dataDevolucao" size="20"
+					value="#{novoAluguelBean.aluguel.dataDevolucao}"
+					pattern="dd/MM/yyyy HH:mm" stepMinute="10" />
+
+
 				<p:outputLabel value="Valor total" for="valorTotal" />
 				<p:inputText id="valorTotal" size="20" maxlength="80"
 					value="#{novoAluguelBean.aluguel.valorTotal}">
 
-					<f:convertNumber pattern="#,##0.00"  locale="pt_BR" />
+					<f:convertNumber pattern="#,##0.00" locale="pt_BR" />
 				</p:inputText>
 
 			</p:panelGrid>
@@ -71,7 +83,7 @@
 				<p:inputText id="valorFranquia" size="20" maxlength="20"
 					value="#{novoAluguelBean.aluguel.apoliceSeguro.valorFranquia}">
 
-					<f:convertNumber pattern="#,##0.00" locale="pt_BR"/>
+					<f:convertNumber pattern="#,##0.00" locale="pt_BR" />
 				</p:inputText>
 			</p:panelGrid>
 

@@ -35,6 +35,10 @@ public class CadastroFabricanteBean implements Serializable{
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
 	}
+	
+	public void novo() {
+		limpar();
+	}
 
 	public CadastroFabricanteService getCadastroFabricanteService() {
 		return cadastroFabricanteService;

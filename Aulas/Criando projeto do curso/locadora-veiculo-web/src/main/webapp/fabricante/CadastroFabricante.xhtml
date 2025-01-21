@@ -21,16 +21,23 @@
 					<p:commandButton value="Salvar" id="botaoSalvar"
 						action="#{cadastroFabricanteBean.salvar}" update="frmCadastro" />
 				</p:toolbarGroup>
+				<p:toolbarGroup>
+					<p:commandButton value="Novo" id="botaoNovo"
+						action="#{cadastroFabricanteBean.novo}" update="frmCadastro" />
+				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" ></p:button>
+					<p:button value="Pesquisa" outcome="PesquisaFabricantes.xhtml"></p:button>
 				</p:toolbarGroup>
 			</p:toolbar>
-			<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
-			<p:outputLabel value="Código" for="codigo"/>
-			<p:inputText id="codigo" size="20" maxlength="20" value="#{cadastroFabricanteBean.fabricante.codigo}" readonly="true"/>
-			
-			<p:outputLabel value="Nome" for="nome"/>
-			<p:inputText id="nome" size="60" maxlength="80" value="#{cadastroFabricanteBean.fabricante.nome}"/>
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="Código" for="codigo" />
+				<p:inputText id="codigo" size="20" maxlength="20" style="border:none;"
+					value="#{cadastroFabricanteBean.fabricante.codigo}" readonly="true" />
+
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="60" maxlength="80"
+					value="#{cadastroFabricanteBean.fabricante.nome}" />
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
