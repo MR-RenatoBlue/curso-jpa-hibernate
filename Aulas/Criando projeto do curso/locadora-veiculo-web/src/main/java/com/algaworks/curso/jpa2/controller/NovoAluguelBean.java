@@ -10,9 +10,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.algaworks.curso.jpa2.dao.CarroDAO;
+import com.algaworks.curso.jpa2.dao.MotoristaDAO;
 import com.algaworks.curso.jpa2.modelo.Aluguel;
 import com.algaworks.curso.jpa2.modelo.ApoliceSeguro;
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelo.Motorista;
 import com.algaworks.curso.jpa2.service.CadastroAluguelService;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jsf.FacesUtil;
@@ -24,6 +26,7 @@ public class NovoAluguelBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Aluguel aluguel;
+	private List<Motorista> motoristas;
 
 	private List<Carro> carros;
 
@@ -33,9 +36,10 @@ public class NovoAluguelBean implements Serializable {
 
 	@Inject
 	private CadastroAluguelService cadastroAluguelService;
-
 	@Inject
 	private CarroDAO carroDAO;
+	@Inject
+	private MotoristaDAO motoristaDAO;
 
 	public void salvar() {
 		try {
@@ -59,6 +63,7 @@ public class NovoAluguelBean implements Serializable {
 		this.aluguel = new Aluguel();
 		this.aluguel.setApoliceSeguro(new ApoliceSeguro());
 		this.apolice = this.aluguel.getApoliceSeguro();
+		this.motoristas = this.motoristaDAO.buscarTodos();
 	}
 
 	public Aluguel getAluguel() {
@@ -71,6 +76,10 @@ public class NovoAluguelBean implements Serializable {
 
 	public List<Carro> getCarros() {
 		return carros;
+	}
+
+	public List<Motorista> getMotoristas() {
+		return motoristas;
 	}
 
 	private void atualizarValorFranquiaCheckProtecaoTerceiro() {

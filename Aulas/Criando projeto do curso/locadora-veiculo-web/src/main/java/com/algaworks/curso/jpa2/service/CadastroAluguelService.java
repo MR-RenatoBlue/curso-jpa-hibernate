@@ -3,7 +3,6 @@ package com.algaworks.curso.jpa2.service;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -24,6 +23,9 @@ public class CadastroAluguelService implements Serializable {
 
 		if (aluguel.getCarro() == null) {
 			throw new NegocioException("O carro é obrigatório");
+		}
+		if (aluguel.getMotorista() == null) {
+			throw new NegocioException("Motorista é obrigatório");
 		}
 		aluguel.setDataPedido(Calendar.getInstance());
 		this.aluguelDAO.salvar(aluguel);

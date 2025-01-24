@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<build>
 		<finalName>locadora-veiculo-web</finalName>
 		<plugins>
@@ -74,7 +74,17 @@
 			<version>4.2.2.Final</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.0.Final</version> <!-- Use uma versão compatível com Hibernate 4 -->
+		</dependency>
 
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
 		<!-- Driver JDBC do MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
