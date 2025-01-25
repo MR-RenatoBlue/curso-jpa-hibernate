@@ -1,6 +1,7 @@
 package com.algaworks.curso.jpa2.modelo;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public enum Categoria {
 
@@ -11,6 +12,15 @@ public enum Categoria {
 	SEDAN_GRANDE,
 	MINIVAN,
 	ESPORTIVO,
-	UTILITARIO_COMERCIAL,
+	UTILITARIO_COMERCIAL,;
+	
+	public static List<String> ordinaisPorNome(Categoria[] categorias) {
+		List<String> ordinais = new ArrayList<String>();
+		for (Categoria categoria : categorias) {
+			ordinais.add(String.valueOf(categoria.ordinal()));
+		}
+		
+		return ordinais;
+	}
 	
 }

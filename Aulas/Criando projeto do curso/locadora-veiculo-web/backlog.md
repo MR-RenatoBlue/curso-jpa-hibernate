@@ -1,0 +1,5 @@
+- fazer deploy com docker
+- fazer uma api de descontos (treinar microserviço, json)
+- adicionar valor de diária para carro/veículo
+- criar uma interface/classe abstrata veiculo
+	-cadastrar motocicletas, caminhão, onibus, utilitários
