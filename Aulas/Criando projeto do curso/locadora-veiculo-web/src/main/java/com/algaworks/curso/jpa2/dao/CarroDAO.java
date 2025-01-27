@@ -12,6 +12,10 @@ import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
 public class CarroDAO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -798331008717640624L;
 	@Inject
 	private EntityManager manager;
 	
@@ -25,7 +29,7 @@ public class CarroDAO implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public List<Carro> buscarTodos() {
-		return manager.createQuery("from Carro").getResultList();
+		return manager.createNamedQuery("buscarTodos").getResultList();
 	}
 	
 	@Transactional
