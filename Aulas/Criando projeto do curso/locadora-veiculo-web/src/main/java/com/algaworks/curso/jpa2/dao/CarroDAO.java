@@ -18,22 +18,22 @@ public class CarroDAO implements Serializable {
 	private static final long serialVersionUID = -798331008717640624L;
 	@Inject
 	private EntityManager manager;
-	
+
 	public Carro buscarPeloCodigo(Long codigo) {
 		return manager.find(Carro.class, codigo);
 	}
-	
-	public void salvar (Carro carro) {
+
+	public void salvar(Carro carro) {
 		manager.merge(carro);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Carro> buscarTodos() {
 		return manager.createNamedQuery("buscarTodos").getResultList();
 	}
-	
+
 	@Transactional
-	public void excluir (Carro carro) throws NegocioException {
+	public void excluir(Carro carro) throws NegocioException {
 		carro = buscarPeloCodigo(carro.getCodigo());
 		try {
 			manager.remove(carro);
@@ -45,7 +45,15 @@ public class CarroDAO implements Serializable {
 
 	public Carro buscarCarroComAcessorios(Long codigo) {
 		return (Carro) manager.createQuery("select c from Carro c JOIN c.acessorios a where c.codigo = ?")
-				.setParameter(1, codigo)
-				.getSingleResult();
+				.setParameter(1, codigo).getSingleResult();
+	}
+
+	public List<Carro> buscarComPaginacao(int first, int pageSize) {
+		return manager.createNamedQuery("buscarTodos").setFirstResult(first).setMaxResults(pageSize).getResultList();
+
+	}
+
+	public Long encontrarQuantidadeCarros() {
+		return this.manager.createQuery("select count(c) from Carro c", Long.class).getSingleResult();
 	}
 }
