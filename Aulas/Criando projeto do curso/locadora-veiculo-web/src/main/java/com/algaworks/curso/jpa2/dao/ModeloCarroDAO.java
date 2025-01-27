@@ -8,11 +8,12 @@ import javax.jws.WebParam.Mode;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
+import com.algaworks.curso.jpa2.lazy.LazyDataModel;
 import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
-public class ModeloCarroDAO implements Serializable {
+public class ModeloCarroDAO implements Serializable, LazyDataModel<ModeloCarro> {
 
 	@Inject
 	private EntityManager manager;
@@ -38,6 +39,16 @@ public class ModeloCarroDAO implements Serializable {
 		} catch (PersistenceException e) {
 			throw new NegocioException("Este modelo não pode ser excluído");
 		}
+	}
+
+	@Override
+	public List<ModeloCarro> buscarComPaginacao(int firstResult, int pageSize) {
+		return manager.createQuery("from ModeloCarro").setFirstResult(firstResult).setMaxResults(pageSize).getResultList();
+	}
+
+	@Override
+	public Long encontrarQuantidade() {
+		return manager.createQuery("select count(mc) from ModeloCarro mc", Long.class).getSingleResult() ;
 	}
 
 }

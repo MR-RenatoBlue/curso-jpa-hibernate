@@ -6,11 +6,12 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import com.algaworks.curso.jpa2.lazy.LazyDataModel;
 import com.algaworks.curso.jpa2.modelo.Carro;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
-public class CarroDAO implements Serializable {
+public class CarroDAO implements Serializable, LazyDataModel<Carro> {
 
 	/**
 	 * 
@@ -53,7 +54,8 @@ public class CarroDAO implements Serializable {
 
 	}
 
-	public Long encontrarQuantidadeCarros() {
+	public Long encontrarQuantidade() {
 		return this.manager.createQuery("select count(c) from Carro c", Long.class).getSingleResult();
 	}
+
 }
