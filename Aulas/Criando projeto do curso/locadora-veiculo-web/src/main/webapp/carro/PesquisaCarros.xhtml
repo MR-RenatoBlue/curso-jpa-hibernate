@@ -60,7 +60,8 @@
 						oncomplete="confirmacaoExclusao.show()" process="@this"
 						update=":frmPesquisa:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener
-							target="#{pesquisaCarroBean.carroSelecionadoParaExclusao}" value="#{carro}" />
+							target="#{pesquisaCarroBean.carroSelecionadoParaExclusao}"
+							value="#{carro}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
@@ -75,6 +76,7 @@
 					onclick="confirmacaoExclusao.hide()"
 					action="#{pesquisaCarroBean.excluir}" />
 			</p:confirmDialog>
+
 			<p:dialog id="mostraAcessoriosDialog" header="Acessórios"
 				widgetVar="mostraAcessorios" modal="true">
 				<p:dataList value="#{pesquisaCarroBean.carroSelecionado.acessorios}"

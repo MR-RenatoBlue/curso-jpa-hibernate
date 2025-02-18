@@ -1,10 +1,17 @@
 package com.algaworks.curso.jpa2.criteria;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import org.junit.After;
 import org.junit.Before;
@@ -58,6 +65,18 @@ public class EventosCascata {
 		this.manager.getTransaction().begin();
 		this.manager.persist(carro);
 		this.manager.getTransaction().commit();
+	}
+	
+	@Test
+	public void buscaFoto() throws IOException {
+		Carro carro = manager.find(Carro.class, 15L);
+			
+		if (carro.getFoto() != null) {
+			BufferedImage img = ImageIO.read(new ByteArrayInputStream(carro.getFoto()));
+			JOptionPane.showMessageDialog(null, new JLabel(new ImageIcon(img)));
+		} else {
+			System.out.println("Carro não possui foto.");
+		}
 	}
 
 }

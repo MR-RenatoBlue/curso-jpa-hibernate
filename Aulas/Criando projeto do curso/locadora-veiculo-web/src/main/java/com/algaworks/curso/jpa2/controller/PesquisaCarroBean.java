@@ -1,5 +1,6 @@
 package com.algaworks.curso.jpa2.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import com.algaworks.curso.jpa2.dao.CarroDAO;
 import com.algaworks.curso.jpa2.lazy.LazyCarroDataModel;
@@ -39,7 +43,8 @@ public class PesquisaCarroBean implements Serializable {
 		try {
 			carroDAO.excluir(carroSelecionadoParaExclusao);
 			this.carros.remove(carroSelecionadoParaExclusao);
-			FacesUtil.addSuccessMessage("Carro placa " + carroSelecionadoParaExclusao.getPlaca() + " excluído com sucesso.");
+			FacesUtil.addSuccessMessage(
+					"Carro placa " + carroSelecionadoParaExclusao.getPlaca() + " excluído com sucesso.");
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
@@ -59,6 +64,14 @@ public class PesquisaCarroBean implements Serializable {
 
 	public void setCarroSelecionado(Carro carroSelecionado) {
 		this.carroSelecionado = carroSelecionado;
+	}
+
+	public Carro getCarroSelecionadoParaVerImagem() {
+		return carroSelecionadoParaVerImagem;
+	}
+
+	public void setCarroSelecionadoParaVerImagem(Carro carroSelecionadoParaVerImagem) {
+		this.carroSelecionadoParaVerImagem = carroSelecionadoParaVerImagem;
 	}
 
 	@PostConstruct
