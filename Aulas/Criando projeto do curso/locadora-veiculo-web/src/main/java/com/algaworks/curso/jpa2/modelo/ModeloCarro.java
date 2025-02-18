@@ -2,13 +2,16 @@ package com.algaworks.curso.jpa2.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ModeloCarro implements Serializable {
@@ -36,7 +39,8 @@ public class ModeloCarro implements Serializable {
 		this.descricao = descricao;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
+	@NotNull
 	public Fabricante getFabricante() {
 		return fabricante;
 	}

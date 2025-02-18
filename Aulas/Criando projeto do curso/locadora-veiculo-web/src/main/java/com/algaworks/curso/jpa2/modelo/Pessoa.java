@@ -1,12 +1,16 @@
 package com.algaworks.curso.jpa2.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.MatchesPattern;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,6 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +36,7 @@ public abstract class Pessoa {
 	private Date dataNascimento;
 	private String cpf;
 	private Sexo sexo;
+	private List<String> telefones = new ArrayList<String>();
 
 	public String getNome() {
 		return nome;
@@ -69,6 +75,7 @@ public abstract class Pessoa {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
+
 	@Enumerated(EnumType.ORDINAL)
 	public Sexo getSexo() {
 		return sexo;
@@ -76,6 +83,17 @@ public abstract class Pessoa {
 
 	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
+	}
+
+	@ElementCollection
+	@CollectionTable(name = "proprietarios_telefones", joinColumns = @JoinColumn(name = "cod_pessoa"))
+	@Column(name="numero_telefone")
+	public List<String> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<String> telefones) {
+		this.telefones = telefones;
 	}
 
 	@Override

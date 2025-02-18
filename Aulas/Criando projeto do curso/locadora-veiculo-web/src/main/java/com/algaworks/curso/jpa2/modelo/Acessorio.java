@@ -11,6 +11,14 @@ public class Acessorio {
 	private Long codigo;
 	private String descricao;
 
+	public Acessorio() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Acessorio(String descricao) {
+		this.descricao = descricao;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getCodigo() {

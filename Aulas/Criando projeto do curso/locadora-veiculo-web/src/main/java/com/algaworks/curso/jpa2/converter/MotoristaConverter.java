@@ -6,6 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import com.algaworks.curso.jpa2.dao.MotoristaDAO;
+import com.algaworks.curso.jpa2.modelo.ModeloCarro;
 import com.algaworks.curso.jpa2.modelo.Motorista;
 import com.algaworks.curso.jpa2.util.cdi.CDIServiceLocator;
 
@@ -31,7 +32,8 @@ public class MotoristaConverter implements Converter {
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 
 		if (value != null) {
-			return ((Motorista) value).getCodigo().toString();
+			Long codigo = ((Motorista) value).getCodigo();
+			return codigo == null ? null : codigo.toString();
 		}
 
 		return "";

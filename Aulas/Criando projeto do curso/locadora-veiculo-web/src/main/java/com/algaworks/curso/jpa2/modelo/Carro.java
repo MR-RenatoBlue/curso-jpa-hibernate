@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,7 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "buscarTodos", query = "select c from Carro c")
+@NamedQuery(name = "buscarTodos", query = "select c from Carro c inner join fetch c.modelo")
 public class Carro {
 
 	private Long codigo;
@@ -45,7 +46,7 @@ public class Carro {
 		return placa;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinTable(
 			name = "carro_acessorio", joinColumns = @JoinColumn(name = "codigo_carro"),
 			inverseJoinColumns = @JoinColumn(name = "codigo_acessorio"))
@@ -69,7 +70,7 @@ public class Carro {
 		return valorDiaria;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "codigo_modelo")
 	public ModeloCarro getModelo() {
 		return modelo;
